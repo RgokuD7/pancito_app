@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "572211571182",
+    "project_id": "pancito-app",
+    "storage_bucket": "pancito-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:572211571182:android:5ffb2723c821909ba486ff",
+        "android_client_info": {
+          "package_name": "com.example.pancito_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1I8bK1_w_QQ3zu1ZsgIOpE5maWUIcLxg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
