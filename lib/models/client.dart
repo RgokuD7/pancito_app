@@ -1,29 +1,32 @@
+import 'package:pancito_app/models/bread_prices.dart';
+
 class Client {
   String id;
   String name;
-  String? address;
+  BreadPrices? breadPrices;
 
   Client({
-    required this.id,
+    this.id = '',
     required this.name,
-    this.address,
+    this.breadPrices,
   });
 
   // Convierte un objeto Client a un mapa para Firebase
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'name': name,
-      'address': address,
+      'breadPrices': breadPrices?.toMap(),
     };
   }
 
   // Convierte un documento de Firebase en un objeto Client
-  factory Client.fromMap(Map<String, dynamic> map, String documentId) {
+  factory Client.fromMap( String documentId, Map<String, dynamic> map) {
     return Client(
       id: documentId,
       name: map['name'] ?? '',
-      address: map['address'],
+      breadPrices: map['breadPrices'] != null
+          ? BreadPrices.fromMap(map['breadPrices'] as Map<String, dynamic>, documentId)
+          : null,
     );
   }
 }
