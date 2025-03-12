@@ -6,24 +6,24 @@ class DeliveryDayService {
   final DocumentReference _userDocumnet =
       FirebaseFirestore.instance.collection('users').doc('1');
 
-  Future<void> addDeliveryDay(DeliveryDay delyveryDay, String clientId) async {
+  Future<void> addDeliveryDay(DeliveryDay deliveryDay, String clientId) async {
     final today = DateFormat('yyyy-MM-dd').format(DateTime.now());
     await _userDocumnet
         .collection('clients')
         .doc(clientId)
         .collection('deliveryDays')
         .doc(today)
-        .set(delyveryDay.toMap());
+        .set(deliveryDay.toMap());
   }
 
   Future<void> updateDeliveryDay(
-      DeliveryDay delyveryDay, String clientId, String day) async {
+      DeliveryDay deliveryDay, String clientId, String day) async {
     await _userDocumnet
         .collection('clients')
         .doc(clientId)
         .collection('deliveryDays')
         .doc(day)
-        .set(delyveryDay.toMap());
+        .set(deliveryDay.toMap());
   }
 
   Future<DeliveryDay> getDeliveryDay(String clientId, String day) async {
