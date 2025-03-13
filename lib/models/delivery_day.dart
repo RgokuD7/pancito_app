@@ -10,7 +10,7 @@ class DeliveryDay {
   PaymentStatus paymentStatus;
 
   DeliveryDay({
-    required this.id,
+    this.id = '',
     this.basicBreadQuantity = const [0],
     this.lenguaBreadQuantity = const [0],
     this.fricaBreadQuantity = const [0],

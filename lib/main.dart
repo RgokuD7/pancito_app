@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'tabs/clients.dart';
 import 'tabs/home.dart';
-import 'tabs/distribution.dart';
+import 'tabs/settings.dart';
 
 import 'providers/app_state.dart';
 import 'firebase_options.dart';
@@ -47,9 +47,8 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    const HomePage(),
     const ClientsPage(),
-    const DistributionPage(),
+    const SettingsPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -64,10 +63,8 @@ class _MainScreenState extends State<MainScreen> {
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
           BottomNavigationBarItem(icon: Icon(Icons.people), label: 'Clientes'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.local_shipping), label: 'Reparto'),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Ajustes'),
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
