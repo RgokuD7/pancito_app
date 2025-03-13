@@ -26,7 +26,7 @@ class DeliveryDayService {
         .set(deliveryDay.toMap());
   }
 
-  Future<DeliveryDay> getDeliveryDay(String clientId, String day) async {
+  Future<DeliveryDay?> getDeliveryDay(String clientId, String day) async {
     final doc = await _userDocumnet
         .collection('clients')
         .doc(clientId)
@@ -34,6 +34,9 @@ class DeliveryDayService {
         .doc(day)
         .get();
 
-    return DeliveryDay.fromMap(doc.id, doc.data() as Map<String, dynamic>);
+    if (doc.exists) {
+      return DeliveryDay.fromMap(doc.id, doc.data() as Map<String, dynamic>);
+    }
+    return null;
   }
 }
