@@ -1,9 +1,9 @@
-import '../models/bread_prices.dart';
+import '../models/user_bread_prices.dart';
 
 class User {
   String id;
   String name;
-  BreadPrices? breadPrices;
+  UserBreadPrices? breadPrices;
 
   User({
     required this.id,
@@ -26,8 +26,8 @@ class User {
       id: documentId,
       name: map['name'] ?? '',
       breadPrices: map['breadPrices'] != null
-          ? BreadPrices.fromMap(
-              map['breadPrices'] as Map<String, dynamic>, documentId)
+          ? UserBreadPrices.fromMap(
+              map['breadPrices'] as Map<String, dynamic>)
           : null,
     );
   }

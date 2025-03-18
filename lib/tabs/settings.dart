@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/prices_dialog.dart';
+import '../widgets/user_prices_dialog.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -16,7 +16,7 @@ class SettingsPage extends StatelessWidget {
             trailing: const Icon(Icons.chevron_right),
             onTap: () => showDialog(
               context: context,
-              builder: (context) => PricesDialog(userId: "1"),
+              builder: (context) => UserPricesDialog(userId: "1"),
             ),
           ),
         ),

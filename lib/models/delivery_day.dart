@@ -7,6 +7,11 @@ class DeliveryDay {
   List<int> fricaBreadQuantity;
   List<int> moldeBreadQuantity;
   List<int> integralBreadQuantity;
+  List<double> basicBreadPayments;
+  List<double> lenguaBreadPayments;
+  List<double> fricaBreadPayments;
+  List<double> moldeBreadPayments;
+  List<double> integralBreadPayments;
   PaymentStatus paymentStatus;
 
   DeliveryDay({
@@ -16,6 +21,11 @@ class DeliveryDay {
     this.fricaBreadQuantity = const [0],
     this.moldeBreadQuantity = const [0],
     this.integralBreadQuantity = const [0],
+    this.basicBreadPayments = const [0.0],
+    this.lenguaBreadPayments = const [0.0],
+    this.fricaBreadPayments = const [0.0],
+    this.moldeBreadPayments = const [0.0],
+    this.integralBreadPayments = const [0.0],
     this.paymentStatus = PaymentStatus.unpaid,
   });
 
@@ -27,6 +37,11 @@ class DeliveryDay {
       'fricaBreadQuantity': fricaBreadQuantity,
       'moldeBreadQuantity': moldeBreadQuantity,
       'integralBreadQuantity': integralBreadQuantity,
+      'basicBreadPayments': basicBreadPayments,
+      'lenguaBreadPayments': lenguaBreadPayments,
+      'fricaBreadPayments': fricaBreadPayments,
+      'moldeBreadPayments': moldeBreadPayments,
+      'integralBreadPayments': integralBreadPayments,
       'paymentStatus': paymentStatus.index,
     };
   }
@@ -39,8 +54,12 @@ class DeliveryDay {
       lenguaBreadQuantity: List<int>.from(map['lenguaBreadQuantity'] ?? [0]),
       fricaBreadQuantity: List<int>.from(map['fricaBreadQuantity'] ?? [0]),
       moldeBreadQuantity: List<int>.from(map['moldeBreadQuantity'] ?? [0]),
-      integralBreadQuantity:
-          List<int>.from(map['integralBreadQuantity'] ?? [0]),
+      integralBreadQuantity: List<int>.from(map['integralBreadQuantity'] ?? [0]),
+      basicBreadPayments: List<double>.from(map['basicBreadPayments'] ?? [0.0]),
+      lenguaBreadPayments: List<double>.from(map['lenguaBreadPayments'] ?? [0.0]),
+      fricaBreadPayments: List<double>.from(map['fricaBreadPayments'] ?? [0.0]),
+      moldeBreadPayments: List<double>.from(map['moldeBreadPayments'] ?? [0.0]),
+      integralBreadPayments: List<double>.from(map['integralBreadPayments'] ?? [0.0]),
       paymentStatus: PaymentStatus.values[map['paymentStatus'] ?? 2],
     );
   }
@@ -63,6 +82,26 @@ class DeliveryDay {
 
   int integralBreadTotal() {
     return integralBreadQuantity.reduce((a, b) => a + b);
+  }
+
+  double basicBreadPaymentsTotal() {
+    return basicBreadPayments.reduce((a, b) => a + b);
+  }
+
+  double lenguaBreadPaymentsTotal() {
+    return lenguaBreadPayments.reduce((a, b) => a + b);
+  }
+
+  double fricaBreadPaymentsTotal() {
+    return fricaBreadPayments.reduce((a, b) => a + b);
+  }
+
+  double moldeBreadPaymentsTotal() {
+    return moldeBreadPayments.reduce((a, b) => a + b);
+  }
+
+  double integralBreadPaymentsTotal() {
+    return integralBreadPayments.reduce((a, b) => a + b);
   }
 
   bool hasOrders() {
