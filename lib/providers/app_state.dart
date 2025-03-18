@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:pancito_app/models/client_bread_prices.dart';
 import '../services/client_service.dart';
 import '../services/user_service.dart';
 import '../services/delivery_day_service.dart';
 import '../models/user.dart';
 import '../models/client.dart';
 import '../models/delivery_day.dart';
+
 import 'package:intl/intl.dart';
 
 class AppState extends ChangeNotifier {
@@ -37,6 +39,7 @@ class AppState extends ChangeNotifier {
     final newClient = Client(
       id: '', // El ID será generado automáticamente por Firebase
       name: name,
+      breadPrices: ClientBreadPrices(),
     );
     await _clientService.addClient(newClient);
     _fetchClients(); // Asegúrate de actualizar la lista de clientes después de agregar uno nuevo
@@ -65,6 +68,7 @@ class AppState extends ChangeNotifier {
   Future<void> updateDeliveryDay(
       DeliveryDay deliveryDay, String clientId, String day) async {
     await _deliveryDayService.updateDeliveryDay(deliveryDay, clientId, day);
+    notifyListeners();
   }
 
   void _checkAndCreateTodayDeliveryDay() async {

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/app_state.dart';
-import '../widgets/prices_dialog.dart';
+import '../widgets/delivery_detail_dialog.dart';
+import '../widgets/user_prices_dialog.dart';
+import '../widgets/client_prices_dialog.dart';
 import '../models/client.dart';
 import '../models/delivery_day.dart';
 import 'package:intl/intl.dart';
@@ -33,9 +35,15 @@ class ClientsPage extends StatelessWidget {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return Container(); // Devolver un contenedor vacío mientras se carga
                     } else if (snapshot.hasError) {
-                      return const Text('Error cargando dia de reparto');
+                      return const Text(
+                        'Error cargando dia de reparto',
+                        textAlign: TextAlign.center,
+                      );
                     } else if (!snapshot.hasData || snapshot.data == null) {
-                      return const Text('Reparto no encontrado');
+                      return const Text(
+                        'Sin clientes registrados, presiona el botón + de abajo a la derecha para agregar un cliente',
+                        textAlign: TextAlign.center,
+                      );
                     }
 
                     final todayDeliveryDay = snapshot.data!;
@@ -68,8 +76,9 @@ class ClientsPage extends StatelessWidget {
                         leading: InkWell(
                           onTap: () => showDialog(
                             context: context,
-                            builder: (context) =>
-                                PricesDialog(userId: "1", clientId: client.id),
+                            builder: (context) => ClientPricesDialog(
+                              clientId: client.id,
+                            ),
                           ),
                           child: const Icon(Icons.more_vert),
                         ),
@@ -81,7 +90,7 @@ class ClientsPage extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              '${todayDeliveryDay.basicBreadTotal().toStringAsFixed(2)} Kg',
+                              '${todayDeliveryDay.basicBreadTotal().toStringAsFixed(1)} Kg',
                               style: TextStyle(
                                   color: Colors.black, fontSize: 16.0),
                             ),
@@ -94,8 +103,8 @@ class ClientsPage extends StatelessWidget {
                         ),
                         onTap: () => showDialog(
                           context: context,
-                          builder: (context) =>
-                              PricesDialog(userId: "1", clientId: client.id),
+                          builder: (context) => DeliveryDetailDialog(
+                              clientId: client.id, date: today),
                         ),
                       ),
                     );
@@ -106,7 +115,11 @@ class ClientsPage extends StatelessWidget {
           ),
           if (appState.clients.isEmpty)
             Center(
-              child: CircularProgressIndicator(),
+              child: Text(
+                'Sin clientes registrados, presiona el botón + de abajo a la derecha para agregar un cliente',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 18.0),
+              ),
             ),
         ],
       ),
