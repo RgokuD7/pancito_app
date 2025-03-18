@@ -1,9 +1,9 @@
-import 'package:pancito_app/models/bread_prices.dart';
+import 'package:pancito_app/models/client_bread_prices.dart';
 
 class Client {
   String id;
   String name;
-  BreadPrices? breadPrices;
+  ClientBreadPrices? breadPrices;
 
   Client({
     this.id = '',
@@ -25,7 +25,7 @@ class Client {
       id: documentId,
       name: map['name'] ?? '',
       breadPrices: map['breadPrices'] != null
-          ? BreadPrices.fromMap(map['breadPrices'] as Map<String, dynamic>, documentId)
+          ? ClientBreadPrices.fromMap(map['breadPrices'] as Map<String, dynamic>)
           : null,
     );
   }
