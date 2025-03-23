@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'tabs/clients.dart';
+import 'tabs/payment_report.dart';
 import 'tabs/settings.dart';
 
 import 'providers/app_state.dart';
@@ -10,6 +12,7 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await initializeDateFormatting('es_ES', null);
   runApp(
     ChangeNotifierProvider(
       create: (context) => AppState(),
@@ -47,6 +50,7 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<Widget> _pages = [
     const ClientsPage(),
+    const PaymentReportPage(),
     const SettingsPage(),
   ];
 
@@ -63,6 +67,8 @@ class _MainScreenState extends State<MainScreen> {
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.people), label: 'Clientes'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.attach_money), label: 'Pago'),
           BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Ajustes'),
         ],
         currentIndex: _selectedIndex,
